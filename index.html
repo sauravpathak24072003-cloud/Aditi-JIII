@@ -1,0 +1,2799 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#fff7fb" />
+  <title>Happy Birthday, My Love</title>
+  <style>
+    :root {
+      --ink: #181714;
+      --soft-ink: #4d4941;
+      --muted: #746f66;
+      --paper: #fffaf4;
+      --ivory: #fff7eb;
+      --rose: #b93457;
+      --rose-soft: #f4a3b8;
+      --wine: #55162b;
+      --forest: #183f35;
+      --mint: #dcefe4;
+      --gold: #d7ae49;
+      --blue: #dbeaff;
+      --line: rgba(24, 23, 20, 0.12);
+      --shadow: 0 26px 80px rgba(58, 24, 35, 0.18);
+      --soft-shadow: 0 16px 38px rgba(31, 26, 23, 0.12);
+      --radius: 8px;
+      --max: 1180px;
+      color-scheme: light;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 2%, rgba(244, 163, 184, 0.28), transparent 28rem),
+        radial-gradient(circle at 86% 12%, rgba(215, 174, 73, 0.20), transparent 24rem),
+        linear-gradient(135deg, #fff7fb 0%, #fffaf4 48%, #f1fbf6 100%);
+      overflow-x: hidden;
+    }
+
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.28;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.45) 1px, transparent 1px);
+      background-size: 38px 38px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,0.18));
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
+    .butterfly-field {
+      position: fixed;
+      inset: 0;
+      z-index: 6;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .butterfly {
+      --size: 26px;
+      --hue: 332;
+      position: absolute;
+      top: var(--top);
+      left: -12vw;
+      width: var(--size);
+      height: var(--size);
+      opacity: 0.58;
+      transform: translate3d(-14vw, 0, 0) rotate(var(--tilt));
+      animation: butterfly-flight var(--duration) linear var(--delay) infinite;
+      filter: drop-shadow(0 9px 12px rgba(78, 31, 45, 0.15));
+    }
+
+    .butterfly span {
+      position: absolute;
+      background:
+        radial-gradient(circle at 32% 34%, rgba(255,255,255,0.95), transparent 0.24rem),
+        linear-gradient(135deg, hsl(var(--hue) 84% 78%), hsl(calc(var(--hue) + 32) 75% 56%));
+      transform-origin: 50% 82%;
+      animation: wing 0.68s ease-in-out infinite alternate;
+    }
+
+    .butterfly .a {
+      width: 48%;
+      height: 58%;
+      left: 2%;
+      top: 4%;
+      border-radius: 90% 22% 76% 30%;
+      transform: rotate(-28deg);
+    }
+
+    .butterfly .b {
+      width: 48%;
+      height: 58%;
+      right: 2%;
+      top: 4%;
+      border-radius: 22% 90% 30% 76%;
+      transform: rotate(28deg);
+      animation-delay: -0.1s;
+    }
+
+    .butterfly .c {
+      width: 38%;
+      height: 42%;
+      left: 8%;
+      bottom: 3%;
+      border-radius: 70% 30% 80% 30%;
+      transform: rotate(18deg);
+      opacity: 0.84;
+      animation-delay: -0.2s;
+    }
+
+    .butterfly .d {
+      width: 38%;
+      height: 42%;
+      right: 8%;
+      bottom: 3%;
+      border-radius: 30% 70% 30% 80%;
+      transform: rotate(-18deg);
+      opacity: 0.84;
+      animation-delay: -0.32s;
+    }
+
+    .butterfly::after {
+      content: "";
+      position: absolute;
+      left: 46%;
+      top: 12%;
+      width: 8%;
+      height: 78%;
+      border-radius: 999px;
+      background: rgba(33, 24, 31, 0.72);
+    }
+
+    @keyframes butterfly-flight {
+      0% {
+        transform: translate3d(-14vw, 0, 0) rotate(var(--tilt));
+      }
+      35% {
+        transform: translate3d(34vw, var(--rise), 0) rotate(calc(var(--tilt) + 14deg));
+      }
+      68% {
+        transform: translate3d(78vw, calc(var(--rise) * -0.45), 0) rotate(calc(var(--tilt) - 8deg));
+      }
+      100% {
+        transform: translate3d(114vw, var(--rise), 0) rotate(calc(var(--tilt) + 10deg));
+      }
+    }
+
+    @keyframes wing {
+      from {
+        scale: 0.86 1;
+      }
+      to {
+        scale: 1.08 1;
+      }
+    }
+
+    .music-dock {
+      position: fixed;
+      right: max(1rem, env(safe-area-inset-right));
+      bottom: max(1rem, env(safe-area-inset-bottom));
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      gap: 0.78rem;
+      padding: 0.56rem 0.82rem 0.56rem 0.56rem;
+      border: 1px solid rgba(24, 23, 20, 0.12);
+      border-radius: 999px;
+      background: rgba(255, 250, 244, 0.78);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 16px 46px rgba(24, 23, 20, 0.18);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .disc {
+      width: 4.35rem;
+      height: 4.35rem;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, #fff 0 9%, var(--rose) 9% 16%, #21171d 16% 29%, #4a3a42 29% 33%, #0f0e0f 33% 64%, #343434 64% 69%, #111 69%);
+      box-shadow:
+        inset 0 0 0 0.24rem rgba(255,255,255,0.16),
+        0 8px 18px rgba(0,0,0,0.18);
+    }
+
+    .music-dock.playing .disc {
+      animation: disc-spin 3.8s linear infinite;
+    }
+
+    @keyframes disc-spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .music-meta {
+      max-width: 12rem;
+      display: grid;
+      gap: 0.12rem;
+    }
+
+    .music-meta strong {
+      font-size: 0.78rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .music-meta span {
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .float-nav {
+      position: fixed;
+      left: 50%;
+      top: max(0.8rem, env(safe-area-inset-top));
+      z-index: 35;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.35rem;
+      max-width: min(94vw, 56rem);
+      padding: 0.42rem;
+      border: 1px solid rgba(24, 23, 20, 0.10);
+      border-radius: 999px;
+      background: rgba(255, 250, 244, 0.70);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 12px 34px rgba(24, 23, 20, 0.10);
+      transform: translateX(-50%);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .float-nav a {
+      padding: 0.5rem 0.78rem;
+      border-radius: 999px;
+      color: #403a33;
+      font-size: 0.78rem;
+      font-weight: 850;
+    }
+
+    .float-nav a:hover {
+      background: rgba(185, 52, 87, 0.10);
+      color: var(--wine);
+    }
+
+    .section {
+      position: relative;
+      padding: clamp(4.5rem, 8vw, 7.6rem) 1.1rem;
+    }
+
+    .section.alt {
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.58), rgba(220,239,228,0.30)),
+        repeating-linear-gradient(135deg, transparent 0 2rem, rgba(185,52,87,0.035) 2rem 2.08rem);
+      border-block: 1px solid rgba(24,23,20,0.07);
+    }
+
+    .wrap {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+    }
+
+    .kicker {
+      margin: 0 0 0.7rem;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      color: var(--rose);
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 1.35rem;
+      color: var(--wine);
+      font-size: 7.6rem;
+      line-height: 0.88;
+      letter-spacing: 0;
+    }
+
+    h1 span {
+      display: block;
+      color: var(--forest);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      color: var(--wine);
+      font-size: 4.45rem;
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      color: var(--wine);
+      font-size: 2rem;
+      line-height: 1.05;
+    }
+
+    .lead {
+      max-width: 46rem;
+      color: #3f3a34;
+      font-size: 1.2rem;
+      line-height: 1.82;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3.05rem;
+      padding: 0.82rem 1.18rem;
+      border: 1px solid rgba(24, 23, 20, 0.14);
+      border-radius: 999px;
+      background: var(--ink);
+      color: white;
+      box-shadow: 0 12px 30px rgba(24,23,20,0.18);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-weight: 900;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 38px rgba(24,23,20,0.22);
+    }
+
+    .btn.secondary {
+      background: rgba(255, 250, 244, 0.74);
+      color: var(--ink);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      align-items: center;
+      padding: 7rem 1.1rem 3rem;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10rem -18rem -10rem;
+      height: 34rem;
+      background:
+        linear-gradient(100deg, rgba(24,63,53,0.12), rgba(215,174,73,0.18), rgba(185,52,87,0.12)),
+        repeating-linear-gradient(90deg, transparent 0 4rem, rgba(24,23,20,0.045) 4rem 4.08rem);
+      transform: rotate(-2deg);
+      border-top: 1px solid rgba(24,23,20,0.06);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 0.94fr) minmax(18rem, 0.72fr);
+      align-items: center;
+      gap: clamp(2rem, 6vw, 5.5rem);
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 36rem;
+    }
+
+    .premium-book {
+      position: absolute;
+      inset: 1.5rem 1rem auto auto;
+      width: min(92%, 25rem);
+      height: 31rem;
+      perspective: 1200px;
+      transform: rotate(4deg);
+    }
+
+    .book-cover-preview,
+    .book-page-preview {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      border-radius: 7px 18px 18px 7px;
+      box-shadow: var(--shadow);
+      transform-origin: left center;
+    }
+
+    .book-cover-preview {
+      z-index: 4;
+      background:
+        linear-gradient(135deg, rgba(85,22,43,0.98), rgba(185,52,87,0.92)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.10) 0 1px, transparent 1px 14px);
+      border: 1px solid rgba(255,255,255,0.34);
+      animation: cover-breathe 4.4s ease-in-out infinite;
+    }
+
+    .book-cover-preview::before {
+      content: "";
+      position: absolute;
+      inset: 1.2rem;
+      border: 1px solid rgba(215,174,73,0.52);
+      border-radius: 5px 14px 14px 5px;
+    }
+
+    .book-cover-preview::after {
+      content: "OUR MEMORY ALBUM";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+      color: #fff3cf;
+      font-size: 2rem;
+      letter-spacing: 0.08em;
+      text-align: center;
+    }
+
+    .book-page-preview {
+      inset: 1.4rem 0 1.4rem 1.1rem;
+      z-index: 3;
+      background: linear-gradient(135deg, #fffefa, #f3fbf5);
+      transform: rotateY(-7deg) translateX(1.2rem);
+    }
+
+    .floating-photo {
+      position: absolute;
+      width: 10rem;
+      height: 13rem;
+      border: 0.55rem solid white;
+      background: linear-gradient(135deg, var(--mint), #ffd7e3);
+      box-shadow: 0 18px 34px rgba(24,23,20,0.18);
+    }
+
+    .floating-photo.one {
+      left: -0.8rem;
+      top: 8rem;
+      transform: rotate(-10deg);
+    }
+
+    .floating-photo.two {
+      right: -0.4rem;
+      top: 2.2rem;
+      background: linear-gradient(135deg, var(--blue), #fff3b0);
+      transform: rotate(9deg);
+    }
+
+    .floating-photo.three {
+      right: 4.8rem;
+      bottom: 1rem;
+      background: linear-gradient(135deg, #f6c1d1, var(--mint));
+      transform: rotate(-4deg);
+    }
+
+    @keyframes cover-breathe {
+      0%, 100% {
+        transform: rotateY(-10deg);
+      }
+      50% {
+        transform: rotateY(-18deg) translateX(-0.3rem);
+      }
+    }
+
+    .letter-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.78fr) minmax(18rem, 0.46fr);
+      gap: clamp(1.4rem, 4vw, 3rem);
+      align-items: stretch;
+    }
+
+    .letter-card,
+    .side-card,
+    .text-panel,
+    .feature-panel {
+      border: 1px solid rgba(24,23,20,0.10);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 244, 0.74);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .letter-card {
+      padding: clamp(1.6rem, 4vw, 3.2rem);
+    }
+
+    .letter-card p {
+      color: #332f2a;
+      font-size: 1.22rem;
+      line-height: 1.9;
+    }
+
+    .signature {
+      color: var(--rose);
+      font-size: 1.25rem;
+      font-style: italic;
+    }
+
+    .side-card {
+      display: grid;
+      align-content: center;
+      gap: 1rem;
+      padding: 1.2rem;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.76), rgba(220,239,228,0.54)),
+        repeating-linear-gradient(0deg, transparent 0 1.4rem, rgba(24,23,20,0.035) 1.4rem 1.45rem);
+    }
+
+    .mini-stat {
+      padding: 1rem;
+      border: 1px solid rgba(24,23,20,0.09);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.66);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-weight: 850;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(15rem, 0.48fr);
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-head p,
+    .prose p {
+      color: #403b35;
+      font-size: 1.04rem;
+      line-height: 1.82;
+    }
+
+    .chapter-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .chapter-card {
+      position: relative;
+      min-height: 22rem;
+      display: grid;
+      align-content: end;
+      overflow: hidden;
+      padding: 1.1rem;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, transparent, rgba(24,23,20,0.64)),
+        linear-gradient(135deg, var(--accent), #191816);
+      box-shadow: var(--soft-shadow);
+      color: white;
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+
+    .chapter-card:hover {
+      transform: translateY(-0.35rem);
+      box-shadow: 0 22px 52px rgba(24,23,20,0.20);
+    }
+
+    .chapter-card::before {
+      content: "";
+      position: absolute;
+      inset: 0.75rem;
+      border: 1px solid rgba(255,255,255,0.34);
+      border-radius: 6px;
+      pointer-events: none;
+    }
+
+    .chapter-card span {
+      position: relative;
+      z-index: 1;
+      color: #fff1cd;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .chapter-card h3,
+    .chapter-card p {
+      position: relative;
+      z-index: 1;
+      color: white;
+    }
+
+    .chapter-card p {
+      margin-bottom: 0;
+      font-size: 0.94rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .magazine-shelf {
+      min-height: 36rem;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      padding: 2rem 0 4rem;
+    }
+
+    .magazine-stack {
+      position: relative;
+      width: min(100%, 66rem);
+      height: 30rem;
+    }
+
+    .magazine {
+      --x: 0px;
+      --y: 0px;
+      --rot: 0deg;
+      --accent: var(--rose);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: clamp(12.5rem, 23vw, 18rem);
+      height: clamp(18.6rem, 33vw, 25.5rem);
+      padding: 1.15rem;
+      overflow: hidden;
+      border: 0;
+      border-radius: 7px;
+      color: white;
+      text-align: left;
+      background: linear-gradient(135deg, var(--accent), #151412);
+      background:
+        linear-gradient(155deg, rgba(255,255,255,0.18), transparent 35%),
+        linear-gradient(135deg, color-mix(in srgb, var(--accent) 92%, #111 8%), color-mix(in srgb, var(--accent) 38%, #111 62%));
+      box-shadow: 0 28px 62px rgba(43, 24, 38, 0.22);
+      transform: translate(-50%, -50%) translate(var(--x), var(--y)) rotate(var(--rot));
+      transition: transform 260ms ease, box-shadow 260ms ease;
+    }
+
+    .magazine::before {
+      content: "";
+      position: absolute;
+      inset: 0.7rem;
+      border: 1px solid rgba(255,255,255,0.42);
+      border-radius: 5px;
+      pointer-events: none;
+    }
+
+    .magazine::after {
+      content: "";
+      position: absolute;
+      left: 1.1rem;
+      top: 0;
+      bottom: 0;
+      width: 0.62rem;
+      background: rgba(255,255,255,0.19);
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
+    }
+
+    .magazine:hover,
+    .magazine:focus-visible {
+      z-index: 20 !important;
+      outline: none;
+      transform: translate(-50%, -50%) translate(var(--x), calc(var(--y) - 1.1rem)) rotate(calc(var(--rot) * 0.4)) scale(1.035);
+      box-shadow: 0 38px 82px rgba(43, 24, 38, 0.30);
+    }
+
+    .magazine small,
+    .magazine strong,
+    .magazine span,
+    .magazine em {
+      position: relative;
+      z-index: 1;
+      display: block;
+    }
+
+    .magazine small {
+      margin: 0.2rem 0 3.2rem 0.7rem;
+      opacity: 0.88;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .magazine strong {
+      max-width: 11rem;
+      margin-left: 0.7rem;
+      font-size: 2.85rem;
+      line-height: 0.88;
+    }
+
+    .magazine span {
+      position: absolute;
+      left: 1.82rem;
+      right: 1.1rem;
+      bottom: 3.7rem;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.82rem;
+      font-weight: 850;
+      line-height: 1.45;
+      opacity: 0.93;
+    }
+
+    .magazine em {
+      position: absolute;
+      left: 1.82rem;
+      right: 1.1rem;
+      bottom: 1.25rem;
+      color: #fff2c8;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.72rem;
+      font-style: normal;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .book-note {
+      max-width: 48rem;
+      margin: 0 auto;
+      padding: 1.25rem;
+      border: 1px solid rgba(24,23,20,0.10);
+      border-radius: var(--radius);
+      background: rgba(255,250,244,0.70);
+      box-shadow: var(--soft-shadow);
+      color: #403b35;
+      line-height: 1.75;
+      text-align: center;
+    }
+
+    .gallery-tools {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.85rem;
+      margin-bottom: 1.4rem;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .gallery-count {
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    .gallery-toggle {
+      padding: 0.72rem 1rem;
+      border: 1px solid rgba(24,23,20,0.12);
+      border-radius: 999px;
+      background: rgba(255,250,244,0.76);
+      color: var(--ink);
+      box-shadow: var(--soft-shadow);
+      font-weight: 900;
+    }
+
+    .gallery-story {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .text-panel {
+      padding: 1.2rem;
+    }
+
+    .text-panel p {
+      margin-bottom: 0;
+      color: #403b35;
+      line-height: 1.72;
+    }
+
+    .photo-wall {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(11rem, 100%), 1fr));
+      grid-auto-flow: dense;
+      gap: clamp(0.65rem, 1.4vw, 1rem);
+    }
+
+    .photo-card {
+      --tilt: 0deg;
+      position: relative;
+      min-height: clamp(13rem, 26vw, 22rem);
+      overflow: hidden;
+      border: 0.45rem solid white;
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: var(--soft-shadow);
+      transform: rotate(var(--tilt));
+      transition: transform 220ms ease, box-shadow 220ms ease;
+    }
+
+    .photo-card:hover {
+      transform: rotate(0deg) scale(1.018);
+      box-shadow: 0 18px 44px rgba(24,23,20,0.18);
+    }
+
+    .photo-card.feature {
+      grid-column: span 2;
+      grid-row: span 2;
+      min-height: clamp(22rem, 44vw, 34rem);
+    }
+
+    .photo-card.wide {
+      grid-column: span 2;
+      min-height: clamp(14rem, 24vw, 22rem);
+    }
+
+    .photo-card.tall {
+      grid-row: span 2;
+      min-height: clamp(22rem, 42vw, 32rem);
+    }
+
+    .photo-card.hidden-extra {
+      display: none;
+    }
+
+    .photo-wall.expanded .photo-card.hidden-extra {
+      display: block;
+    }
+
+    .photo-card figcaption {
+      position: absolute;
+      left: 0.45rem;
+      right: 0.45rem;
+      bottom: 0.45rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 5px;
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(10px);
+      color: #201d1a;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.78rem;
+      font-weight: 900;
+    }
+
+    .ring-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.55fr) minmax(20rem, 0.78fr);
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: center;
+    }
+
+    .ring-stage {
+      position: relative;
+      min-height: 34rem;
+      overflow: hidden;
+      border: 1px solid rgba(24,23,20,0.10);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.92), rgba(220,239,228,0.78)),
+        radial-gradient(circle at 18% 18%, rgba(215,174,73,0.26), transparent 18rem);
+      box-shadow: var(--shadow);
+    }
+
+    .ring-stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(transparent 0 58%, rgba(255,255,255,0.62)),
+        repeating-linear-gradient(90deg, rgba(185,52,87,0.045) 0 1px, transparent 1px 5rem);
+    }
+
+    .hand {
+      position: absolute;
+      bottom: 5rem;
+      width: min(36vw, 16.5rem);
+      height: 8rem;
+      transform-origin: center bottom;
+      filter: drop-shadow(0 14px 18px rgba(24,23,20,0.12));
+    }
+
+    .hand.left {
+      left: 4%;
+      transform: rotate(2deg);
+    }
+
+    .hand.right {
+      right: 4%;
+      transform: scaleX(-1) rotate(2deg);
+    }
+
+    .palm {
+      position: absolute;
+      left: 2.5rem;
+      bottom: 0;
+      width: 9.8rem;
+      height: 4.1rem;
+      border-radius: 999px 999px 2rem 2rem;
+      background: linear-gradient(135deg, #f7c8b0, #df9a86);
+    }
+
+    .finger {
+      position: absolute;
+      bottom: 3.1rem;
+      width: 2rem;
+      height: 5.2rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #f7c8b0, #df9a86);
+      transform-origin: center bottom;
+    }
+
+    .finger.one {
+      left: 3rem;
+      height: 5.8rem;
+      transform: rotate(-4deg);
+    }
+
+    .finger.two {
+      left: 5.15rem;
+      height: 6.45rem;
+    }
+
+    .finger.three {
+      left: 7.3rem;
+      height: 5.85rem;
+      transform: rotate(5deg);
+    }
+
+    .finger.four {
+      left: 9.35rem;
+      height: 5rem;
+      transform: rotate(9deg);
+    }
+
+    .ring {
+      --progress: 0;
+      position: absolute;
+      z-index: 3;
+      width: clamp(6rem, 12vw, 8.4rem);
+      aspect-ratio: 1;
+      border: 0.82rem solid #edc857;
+      border-radius: 50%;
+      box-shadow:
+        inset 0 0 0 0.36rem rgba(255,255,255,0.50),
+        0 0 0 0.16rem rgba(94,64,12,0.16),
+        0 24px 36px rgba(109,71,12,0.25);
+      transition: left 180ms ease-out, top 180ms ease-out, transform 180ms ease-out, opacity 220ms ease;
+    }
+
+    .ring::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -2.45rem;
+      width: 2.65rem;
+      height: 2.65rem;
+      background: linear-gradient(135deg, #ffffff, #b8eaff 54%, #ffffff);
+      transform: translateX(-50%) rotate(45deg);
+      clip-path: polygon(50% 0, 100% 38%, 78% 100%, 22% 100%, 0 38%);
+      box-shadow: 0 8px 20px rgba(50,120,150,0.24);
+    }
+
+    .ring.her-ring {
+      left: calc(13% + (49% * var(--progress)));
+      top: calc(20% + (43% * var(--progress)));
+      transform: translate(-50%, -50%) rotate(calc(-20deg + (20deg * var(--progress)))) scale(calc(1.03 - (0.17 * var(--progress))));
+    }
+
+    .ring.my-ring {
+      left: 78%;
+      top: 23%;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.82) rotate(22deg);
+    }
+
+    .ring-stage.my-turn .my-ring {
+      animation: my-ring 1.45s cubic-bezier(.2,.8,.2,1) forwards;
+    }
+
+    @keyframes my-ring {
+      0% {
+        opacity: 0;
+        left: 78%;
+        top: 23%;
+        transform: translate(-50%, -50%) scale(0.82) rotate(22deg);
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 1;
+        left: 29%;
+        top: 63%;
+        transform: translate(-50%, -50%) scale(0.86) rotate(0deg);
+      }
+    }
+
+    .ring-slider {
+      position: absolute;
+      z-index: 5;
+      left: 1.2rem;
+      right: 1.2rem;
+      bottom: 1.2rem;
+      display: grid;
+      gap: 0.65rem;
+      padding: 1rem;
+      border: 1px solid rgba(24,23,20,0.09);
+      border-radius: var(--radius);
+      background: rgba(255,250,244,0.76);
+      backdrop-filter: blur(18px);
+    }
+
+    .ring-slider label {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: #2e2b26;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.86rem;
+      font-weight: 900;
+    }
+
+    .ring-slider input {
+      width: 100%;
+      accent-color: var(--rose);
+    }
+
+    .ring-toast {
+      position: absolute;
+      z-index: 6;
+      inset: auto 1.2rem 7.3rem 1.2rem;
+      padding: 1rem 1.15rem;
+      border-radius: var(--radius);
+      background: var(--ink);
+      color: white;
+      box-shadow: 0 18px 38px rgba(24,23,20,0.24);
+      transform: translateY(1rem);
+      opacity: 0;
+      transition: opacity 260ms ease, transform 260ms ease;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    .ring-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .triple {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .feature-panel {
+      padding: 1.15rem;
+    }
+
+    .feature-panel p {
+      margin-bottom: 0;
+      color: #403b35;
+      line-height: 1.72;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.38fr) minmax(20rem, 0.78fr);
+      gap: clamp(1.4rem, 5vw, 3.5rem);
+      align-items: start;
+    }
+
+    .scoreboard {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .score-box {
+      padding: 1.1rem;
+      border: 1px solid rgba(24,23,20,0.10);
+      border-radius: var(--radius);
+      background: rgba(255,250,244,0.74);
+      box-shadow: var(--soft-shadow);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .score-box strong {
+      display: block;
+      margin-bottom: 0.28rem;
+      color: var(--rose);
+      font-size: 2.5rem;
+      line-height: 1;
+    }
+
+    .game-stage {
+      position: relative;
+      min-height: clamp(28rem, 60vw, 36rem);
+      overflow: hidden;
+      border: 1px solid rgba(24,23,20,0.10);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, #fff9fc, #f3fff7 70%, #e7f5ee),
+        repeating-linear-gradient(90deg, transparent 0 4rem, rgba(24,23,20,0.035) 4rem 4.08rem);
+      box-shadow: var(--shadow);
+      touch-action: none;
+    }
+
+    .heart {
+      position: absolute;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 0.32rem;
+      background: var(--rose-soft);
+      box-shadow: 0 10px 20px rgba(185,52,87,0.22);
+      transform: translate(-50%, -50%) rotate(-45deg);
+      will-change: transform;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: inherit;
+    }
+
+    .heart::before {
+      top: -1rem;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 1rem;
+      top: 0;
+    }
+
+    .bucket {
+      position: absolute;
+      left: 50%;
+      bottom: 1.4rem;
+      width: clamp(5.8rem, 18vw, 8.5rem);
+      height: 4.2rem;
+      border: 0.38rem solid var(--ink);
+      border-top-width: 0.6rem;
+      border-radius: 0 0 1.6rem 1.6rem;
+      background: linear-gradient(135deg, rgba(24,63,53,0.90), rgba(220,239,228,0.86));
+      box-shadow: 0 16px 26px rgba(24,23,20,0.18);
+      transform: translateX(-50%);
+    }
+
+    .bucket::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -1.6rem;
+      width: 68%;
+      height: 2rem;
+      border: 0.3rem solid var(--ink);
+      border-bottom: 0;
+      border-radius: 999px 999px 0 0;
+      transform: translateX(-50%);
+    }
+
+    .game-result {
+      position: absolute;
+      z-index: 6;
+      inset: 1.2rem;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+      border-radius: var(--radius);
+      background: rgba(255,250,244,0.88);
+      backdrop-filter: blur(16px);
+      text-align: center;
+      transform: scale(0.96);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .game-result.show {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    .wish-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .finale {
+      min-height: 82vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }
+
+    .finale p {
+      max-width: 48rem;
+      margin-inline: auto;
+      color: #403b35;
+      font-size: 1.1rem;
+      line-height: 1.82;
+    }
+
+    .quote {
+      margin: 2rem auto;
+      max-width: 48rem;
+      color: var(--wine);
+      font-size: 1.65rem;
+      font-style: italic;
+      line-height: 1.55;
+    }
+
+    .book-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      place-items: center;
+      padding: clamp(0.7rem, 3vw, 2rem);
+      background: rgba(24,23,20,0.54);
+      backdrop-filter: blur(18px);
+    }
+
+    .book-overlay.open {
+      display: grid;
+    }
+
+    .book-wrap {
+      width: min(66rem, 100%);
+      display: grid;
+      gap: 1rem;
+    }
+
+    .book-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      color: white;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-weight: 900;
+    }
+
+    .book-toolbar button,
+    .book-nav button {
+      width: 2.9rem;
+      height: 2.9rem;
+      border: 1px solid rgba(255,255,255,0.34);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
+      color: white;
+      backdrop-filter: blur(12px);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+    }
+
+    .book {
+      position: relative;
+      width: 100%;
+      height: min(72vh, 43rem);
+      min-height: 34rem;
+      perspective: 1800px;
+      filter: drop-shadow(0 34px 70px rgba(0,0,0,0.30));
+    }
+
+    .book.closing {
+      animation: book-close 560ms ease forwards;
+    }
+
+    @keyframes book-close {
+      to {
+        opacity: 0;
+        transform: rotateX(8deg) scale(0.78);
+      }
+    }
+
+    .book-page {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      overflow: hidden;
+      padding: clamp(1rem, 2.6vw, 2rem);
+      border: 1px solid rgba(77, 48, 35, 0.15);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.97), rgba(252,247,239,0.97)),
+        repeating-linear-gradient(0deg, transparent 0 1.7rem, rgba(24,23,20,0.035) 1.7rem 1.76rem);
+    }
+
+    .book-page.left {
+      left: 0;
+      border-radius: 8px 0 0 8px;
+      box-shadow: inset -18px 0 34px rgba(77,48,35,0.11);
+    }
+
+    .book-page.right {
+      right: 0;
+      border-radius: 0 8px 8px 0;
+      box-shadow: inset 18px 0 34px rgba(77,48,35,0.08);
+    }
+
+    .book-spine {
+      position: absolute;
+      z-index: 4;
+      top: 0;
+      bottom: 0;
+      left: calc(50% - 0.18rem);
+      width: 0.36rem;
+      background: linear-gradient(90deg, rgba(77,48,35,0.24), rgba(255,255,255,0.34), rgba(77,48,35,0.20));
+    }
+
+    .turner {
+      position: absolute;
+      z-index: 6;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      display: none;
+      transform-style: preserve-3d;
+      pointer-events: none;
+    }
+
+    .turner.show {
+      display: block;
+    }
+
+    .turner.next {
+      left: 50%;
+      transform-origin: left center;
+      animation: flip-next 760ms cubic-bezier(.22,.75,.16,1) forwards;
+    }
+
+    .turner.prev {
+      left: 0;
+      transform-origin: right center;
+      animation: flip-prev 760ms cubic-bezier(.22,.75,.16,1) forwards;
+    }
+
+    .turner-face {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      padding: clamp(1rem, 2.6vw, 2rem);
+      border: 1px solid rgba(77,48,35,0.13);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,1), rgba(252,247,239,1)),
+        repeating-linear-gradient(0deg, transparent 0 1.7rem, rgba(24,23,20,0.035) 1.7rem 1.76rem);
+      backface-visibility: hidden;
+    }
+
+    .turner-face.front {
+      border-radius: 0 8px 8px 0;
+      box-shadow: inset 18px 0 34px rgba(77,48,35,0.08);
+    }
+
+    .turner-face.back {
+      border-radius: 8px 0 0 8px;
+      box-shadow: inset -18px 0 34px rgba(77,48,35,0.11);
+      transform: rotateY(180deg);
+    }
+
+    @keyframes flip-next {
+      from {
+        transform: rotateY(0deg);
+      }
+      to {
+        transform: rotateY(-180deg);
+      }
+    }
+
+    @keyframes flip-prev {
+      from {
+        transform: rotateY(0deg);
+      }
+      to {
+        transform: rotateY(180deg);
+      }
+    }
+
+    .book-nav {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+
+    .book-cover-page {
+      height: 100%;
+      display: grid;
+      align-content: center;
+      gap: 1rem;
+      padding: 1.2rem;
+      border-radius: 6px;
+      color: white;
+      background:
+        linear-gradient(135deg, rgba(24,23,20,0.40), rgba(24,23,20,0.06)),
+        var(--cover, linear-gradient(135deg, var(--rose), var(--forest)));
+    }
+
+    .book-cover-page h3,
+    .book-letter h3,
+    .book-quote h3 {
+      margin-bottom: 0.6rem;
+      font-size: 3rem;
+      line-height: 0.96;
+    }
+
+    .book-cover-page p,
+    .book-letter p,
+    .book-quote p {
+      font-size: 1rem;
+      line-height: 1.72;
+    }
+
+    .book-letter,
+    .book-quote {
+      min-height: 100%;
+      display: grid;
+      align-content: center;
+    }
+
+    .book-letter p {
+      color: #34302b;
+      font-size: 1.12rem;
+    }
+
+    .book-collage {
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: 1fr;
+      gap: 0.58rem;
+    }
+
+    .book-shot {
+      position: relative;
+      overflow: hidden;
+      border: 0.35rem solid white;
+      border-radius: 6px;
+      background: white;
+      box-shadow: 0 8px 22px rgba(24,23,20,0.15);
+    }
+
+    .book-shot:nth-child(1) {
+      grid-column: span 4;
+      grid-row: span 3;
+    }
+
+    .book-shot:nth-child(2) {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .book-shot:nth-child(3),
+    .book-shot:nth-child(4) {
+      grid-column: span 3;
+      grid-row: span 2;
+    }
+
+    .book-shot span {
+      position: absolute;
+      left: 0.45rem;
+      right: 0.45rem;
+      bottom: 0.45rem;
+      padding: 0.38rem 0.45rem;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.78);
+      color: #201d1a;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.72rem;
+      font-weight: 900;
+    }
+
+    .book-quote {
+      color: var(--wine);
+      text-align: center;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 60;
+      left: 50%;
+      bottom: 1.2rem;
+      max-width: min(92vw, 34rem);
+      padding: 0.95rem 1.1rem;
+      border-radius: 999px;
+      background: var(--ink);
+      color: white;
+      box-shadow: 0 18px 38px rgba(24,23,20,0.24);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 1rem);
+      transition: opacity 220ms ease, transform 220ms ease;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.88rem;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 980px) {
+      .chapter-grid,
+      .gallery-story,
+      .triple,
+      .wish-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .float-nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .hero-inner,
+      .letter-grid,
+      .section-head,
+      .ring-grid,
+      .game-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 3rem;
+      }
+
+      h1 {
+        font-size: 5.2rem;
+      }
+
+      h2 {
+        font-size: 3.35rem;
+      }
+
+      .hero-visual {
+        min-height: 26rem;
+      }
+
+      .premium-book {
+        position: relative;
+        inset: auto;
+        height: 24rem;
+        margin: 0 auto;
+      }
+
+      .magazine-shelf {
+        min-height: auto;
+        overflow: visible;
+        place-items: stretch;
+      }
+
+      .magazine-stack {
+        height: auto;
+        display: grid;
+        gap: 1rem;
+      }
+
+      .magazine {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: min(100%, 24rem);
+        height: 16.5rem;
+        margin: 0 auto;
+        transform: rotate(var(--mobile-rot, 0deg));
+      }
+
+      .magazine:hover,
+      .magazine:focus-visible {
+        transform: translateY(-0.35rem) rotate(0deg);
+      }
+
+      .photo-card.feature,
+      .photo-card.wide,
+      .photo-card.tall {
+        grid-column: auto;
+        grid-row: auto;
+        min-height: clamp(15rem, 62vw, 26rem);
+      }
+
+      .book {
+        height: 72vh;
+        min-height: 32rem;
+      }
+
+      .book-page,
+      .turner-face {
+        padding: 0.9rem;
+      }
+
+      .book-cover-page h3,
+      .book-letter h3,
+      .book-quote h3 {
+        font-size: 2.25rem;
+      }
+
+      .music-meta {
+        display: none;
+      }
+
+      .music-dock {
+        padding: 0.45rem;
+      }
+
+      .disc {
+        width: 3.75rem;
+        height: 3.75rem;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .section {
+        padding-inline: 0.9rem;
+      }
+
+      h1 { font-size: 4rem; }
+      h2 { font-size: 2.75rem; }
+
+      .lead,
+      .section-head p,
+      .prose p {
+        font-size: 0.98rem;
+      }
+
+      .chapter-grid,
+      .gallery-story,
+      .triple,
+      .wish-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ring-stage {
+        min-height: 28rem;
+      }
+
+      .hand {
+        width: 12rem;
+        bottom: 5rem;
+      }
+
+      .hand.left {
+        left: -1.6rem;
+      }
+
+      .hand.right {
+        right: -1.6rem;
+      }
+
+      .ring.her-ring {
+        left: calc(15% + (50% * var(--progress)));
+        top: calc(23% + (41% * var(--progress)));
+      }
+
+      .book-overlay {
+        padding: 0.5rem;
+      }
+
+      .book {
+        height: 74vh;
+        min-height: 30rem;
+      }
+
+      .book-cover-page {
+        padding: 0.7rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="butterfly-field" id="butterflyField" aria-hidden="true"></div>
+
+  <nav class="float-nav" aria-label="Memory navigation">
+    <a href="#story">Our Story</a>
+    <a href="#chapters">Chapters</a>
+    <a href="#magazines">Magazines</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#promise">Promise</a>
+    <a href="#game">Game</a>
+    <a href="#wish">Wish</a>
+  </nav>
+
+  <main class="page">
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <div>
+          <p class="kicker">A birthday website made only for you</p>
+          <h1>Happy Birthday, <span>Aditi Jiii</span></h1>
+          <p class="lead">
+            On this special day, I want you to feel celebrated, respected, and deeply loved. Thank you for standing beside me with patience, warmth, and the kind of care that makes ordinary days feel blessed.
+          </p>
+          <div class="btn-row">
+            <button class="btn" id="openGift">Open the Gift</button>
+            <a class="btn secondary" href="#story">Our Story</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="premium-book">
+            <div class="book-page-preview"></div>
+            <div class="book-cover-preview"></div>
+            <div class="floating-photo one"></div>
+            <div class="floating-photo two"></div>
+            <div class="floating-photo three"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="story">
+      <div class="wrap letter-grid">
+        <article class="letter-card">
+          <p>
+            May this year bring you good health, peace, success, and every happiness your heart quietly prays for. I am grateful to have you in my life, and I hope this little album feels like a small home for our memories.
+          </p>
+          <p>
+            This website is not just a page. It is a small digital home for what we are: the photographs, the quiet promises, the smiles, the places, and the future I keep imagining with you.
+          </p>
+          <p class="signature">With all my love</p>
+        </article>
+        <aside class="side-card" aria-label="Album highlights">
+          <div class="mini-stat">60 photographs curated like a luxury memory magazine.</div>
+          <div class="mini-stat">5 chapters: Firsts, Places, Smiles, Promises, Forever.</div>
+          <div class="mini-stat">1 page-flip album, 1 promise animation, 1 heart game.</div>
+          <div class="mini-stat">Every butterfly, word, and frame made for you.</div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="chapters">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Our Memory Album</p>
+            <h2>The Chapters of Us</h2>
+          </div>
+          <p>
+            Every love story deserves its own library. Ours is written in quiet mornings, shared glances, and moments too tender for words. These five chapters hold what words alone could never fully say.
+          </p>
+        </div>
+        <div class="chapter-grid" id="chapterGrid"></div>
+      </div>
+    </section>
+
+    <section class="section alt" id="magazines">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Memory Magazine Stack</p>
+            <h2>Our Love, in Print</h2>
+          </div>
+          <p>
+            There is something deeply romantic about a magazine: glossy covers, stories waiting inside, and photographs that feel important enough to keep. Click any cover to open it.
+          </p>
+        </div>
+        <div class="magazine-shelf">
+          <div class="magazine-stack" id="magazineStack"></div>
+        </div>
+        <p class="book-note">
+          Each magazine opens into a full page-flip book experience. On your phone, swipe left or right to turn pages. On desktop, use the arrow buttons.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Full Photo Gallery</p>
+            <h2>60 Moments, One Love Story</h2>
+          </div>
+          <p>
+            A gallery is more than photographs displayed on a screen. It is time made visible. Each image here is a moment we lived together, a frame of something real and irreplaceable.
+          </p>
+        </div>
+
+        <div class="gallery-story">
+          <article class="text-panel">
+            <h3>Polaroid Memories</h3>
+            <p>Some photographs deserve a white border and a soft shadow, like something tucked inside a journal and found again years later.</p>
+          </article>
+          <article class="text-panel">
+            <h3>Collage Pages</h3>
+            <p>Others belong layered together, the way memories actually feel: beautifully tangled, one spilling into the next.</p>
+          </article>
+          <article class="text-panel">
+            <h3>Feature Portraits</h3>
+            <p>Some photographs demand space. A full frame. No caption necessary. Just you, luminous and completely yourself.</p>
+          </article>
+        </div>
+
+        <div class="gallery-tools">
+          <span class="gallery-count" id="galleryCount">60 memories ready</span>
+          <button class="gallery-toggle" id="galleryToggle">Show all photos</button>
+        </div>
+        <div class="photo-wall" id="photoWall"></div>
+      </div>
+    </section>
+
+    <section class="section alt" id="promise">
+      <div class="wrap">
+        <div class="ring-grid">
+          <div class="prose">
+            <p class="kicker">A Promise in Motion</p>
+            <h2>The Ring Interaction</h2>
+            <p>
+              Some promises do not fit into words. They have to be shown, felt, experienced in the body before the mind can catch up with what the heart already knows.
+            </p>
+            <p>
+              Move the slider slowly. Watch what happens. Let the animation say what I have been learning to say every single day since I met you.
+            </p>
+            <p class="quote">
+              "When the slider reaches the end, a message will appear. It will not be the last message. It will be the first of many, many more."
+            </p>
+          </div>
+          <div class="ring-stage" id="ringStage">
+            <div class="hand left" aria-hidden="true">
+              <div class="finger one"></div>
+              <div class="finger two"></div>
+              <div class="finger three"></div>
+              <div class="finger four"></div>
+              <div class="palm"></div>
+            </div>
+            <div class="hand right" aria-hidden="true">
+              <div class="finger one"></div>
+              <div class="finger two"></div>
+              <div class="finger three"></div>
+              <div class="finger four"></div>
+              <div class="palm"></div>
+            </div>
+            <div class="ring her-ring" id="herRing" aria-hidden="true"></div>
+            <div class="ring my-ring" aria-hidden="true"></div>
+            <div class="ring-toast" id="ringToast">Congratulations. The first promise is complete. Now it is my turn.</div>
+            <div class="ring-slider">
+              <label for="ringSlider"><span>Place the ring</span><span id="ringPercent">0%</span></label>
+              <input id="ringSlider" type="range" min="0" max="100" value="0" />
+            </div>
+          </div>
+        </div>
+
+        <div class="triple">
+          <article class="feature-panel">
+            <h3>The Animation</h3>
+            <p>A ring moves across the screen as you slide: slowly, deliberately, the way a real promise moves, step by step.</p>
+          </article>
+          <article class="feature-panel">
+            <h3>The Message</h3>
+            <p>"Congratulations. The first promise is complete. Now it is my turn." Then a second ring begins its journey.</p>
+          </article>
+          <article class="feature-panel">
+            <h3>The Feeling</h3>
+            <p>This is a gesture, small and digital, but true: a way of showing you that I am moving toward you. Always.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="music">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Now Playing</p>
+            <h2>The Song That Plays for You</h2>
+          </div>
+          <p>
+            There is a soft rotating disc in the bottom-right corner of your screen. The song is called "I Think They Call This Love." Let it play while you scroll.
+          </p>
+        </div>
+        <div class="triple">
+          <article class="feature-panel">
+            <h3>How to Listen</h3>
+            <p>Tap or click the disc to pause and play. The disc rotates while music is playing and stills when paused.</p>
+          </article>
+          <article class="feature-panel">
+            <h3>Why This Song?</h3>
+            <p>I wanted a song that feels like the texture of loving you: warm, overwhelmed, and quietly certain.</p>
+          </article>
+          <article class="feature-panel">
+            <h3>A Small Orbit</h3>
+            <p>Every time the disc rotates, think of it as one more small revolution around you.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="game">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Mini Love Game</p>
+            <h2>Catch the Hearts</h2>
+          </div>
+          <p>
+            Not everything between us needs to be solemn and grand. Some of it is playful. Thirty hearts. Three rounds. Each round a little faster than the last.
+          </p>
+        </div>
+
+        <div class="triple">
+          <article class="feature-panel">
+            <h3>Round 1 - Easy</h3>
+            <p>Hearts 1-10 fall slowly, gently, like the early days when everything felt light and new.</p>
+          </article>
+          <article class="feature-panel">
+            <h3>Round 2 - Medium</h3>
+            <p>Hearts 11-20 pick up pace, where love deepens and togetherness finds its rhythm.</p>
+          </article>
+          <article class="feature-panel">
+            <h3>Round 3 - Hard</h3>
+            <p>Hearts 21-30 fall faster, because the truest love asks you to stay in the game.</p>
+          </article>
+        </div>
+
+        <div class="game-grid" style="margin-top: 1.6rem;">
+          <aside class="scoreboard">
+            <div class="score-box"><strong id="caughtCount">0</strong><span>hearts caught</span></div>
+            <div class="score-box"><strong id="levelLabel">1</strong><span>current round</span></div>
+            <button class="btn" id="startGame">Start Hearts</button>
+          </aside>
+          <div class="game-stage" id="gameStage">
+            <div class="bucket" id="bucket" aria-hidden="true"></div>
+            <div class="game-result" id="gameResult">
+              <div>
+                <h3 id="gameResultTitle">Love counted</h3>
+                <p id="gameResultText"></p>
+                <button class="btn" id="playAgain">Play again</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="design">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">A Note on Design</p>
+            <h2>Butterflies &amp; Beautiful Details</h2>
+          </div>
+          <p>
+            The butterflies were not an accident. They are a symbol of the beautiful change that happens when something ordinary becomes something extraordinary. That is what you did to my life.
+          </p>
+        </div>
+        <div class="triple">
+          <article class="feature-panel">
+            <h3>Soft Romantic Palette</h3>
+            <p>Rose, ivory, wine, gold, mint, and forest green: tender and luxurious at once.</p>
+          </article>
+          <article class="feature-panel">
+            <h3>Premium Typography</h3>
+            <p>Elegant serif headings and calm modern body text, dressed beautifully before they reach you.</p>
+          </article>
+          <article class="feature-panel">
+            <h3>Smooth Transitions</h3>
+            <p>Every scroll, click, and page flip is designed to feel unhurried, because a personal gift should never feel rushed.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="wish">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">A Birthday Wish</p>
+            <h2>For Every Year Ahead of You</h2>
+          </div>
+          <p>
+            Birthdays ask us to stop, to look back at everything carried through the year just ended, and to face the year ahead with hope.
+          </p>
+        </div>
+        <div class="wish-grid">
+          <article class="feature-panel"><h3>Photographs</h3><p>Sixty moments from our story, curated with love and arranged like a magazine you can return to any time.</p></article>
+          <article class="feature-panel"><h3>Chapters</h3><p>Five editions: Firsts, Places, Smiles, Promises, Forever. Each one a different facet of what we are.</p></article>
+          <article class="feature-panel"><h3>Hearts to Catch</h3><p>Thirty falling hearts in a game that ends with the same message: Happy Birthday, my love.</p></article>
+          <article class="feature-panel"><h3>Person I Made This For</h3><p>Every pixel, every word, every animated butterfly on this page: all of it, entirely and only, for you.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section finale" id="finale">
+      <div class="wrap">
+        <p class="kicker">With All My Love</p>
+        <h2>Happy Birthday, My Love</h2>
+        <p class="quote">
+          "May every new year of your life feel peaceful, respected, and full of small reasons to smile. I will always pray for your happiness, your health, your dreams, and the beautiful future waiting for you."
+        </p>
+        <p>
+          I do not have the words for everything I feel. But I hope this page, these photographs, these pages, and these butterflies drifting softly across your screen gesture toward something true: that you are loved, that you are seen, and that I am grateful you exist in this world.
+        </p>
+        <p>
+          With every good thing I have, and every good thing I hope to give: Happy Birthday. I love you.
+        </p>
+        <div class="btn-row" style="justify-content: center;">
+          <a class="btn" href="#magazines">Replay the Album</a>
+          <a class="btn secondary" href="#top">Back to the Beginning</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="book-overlay" id="bookOverlay" aria-hidden="true">
+    <div class="book-wrap">
+      <div class="book-toolbar">
+        <span id="bookTitle">Memory book</span>
+        <button id="closeBook" aria-label="Close book">x</button>
+      </div>
+      <div class="book" id="book">
+        <div class="book-page left" id="bookLeft"></div>
+        <div class="book-spine"></div>
+        <div class="book-page right" id="bookRight"></div>
+        <div class="turner" id="turner">
+          <div class="turner-face front" id="turnerFront"></div>
+          <div class="turner-face back" id="turnerBack"></div>
+        </div>
+      </div>
+      <div class="book-nav">
+        <button id="prevPage" aria-label="Previous page">&lt;</button>
+        <button id="nextPage" aria-label="Next page">&gt;</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="music-dock" id="musicDock">
+    <button class="disc" id="musicToggle" aria-label="Play or pause music"></button>
+    <div class="music-meta">
+      <strong>I Think They Call This Love</strong>
+      <span id="musicStatus">starting softly</span>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const songUrl = "videoplayback.m4a";
+
+    const colorSets = [
+      ["#f4a3b8", "#dcefe4"],
+      ["#dbeaff", "#d7ae49"],
+      ["#b93457", "#ffd8e2"],
+      ["#183f35", "#e7fff2"],
+      ["#f08aa5", "#fff0b5"],
+      ["#55162b", "#d7ae49"],
+      ["#b9e8ff", "#fff7fb"],
+      ["#f5c8af", "#183f35"],
+      ["#9fd7c3", "#dbeaff"],
+      ["#d7ae49", "#f08aa5"],
+      ["#181714", "#dcefe4"],
+      ["#8d5bd7", "#feeafa"]
+    ];
+
+    const photos = Array.from({ length: 60 }, (_, index) => {
+      const number = index + 1;
+      return {
+        title: `Memory ${String(number).padStart(2, "0")}`,
+        place: `Photo ${String(number).padStart(2, "0")}`,
+        src: `${number}.jpeg`,
+        colors: colorSets[index % colorSets.length]
+      };
+    });
+
+    const chapters = [
+      {
+        title: "Firsts",
+        subtitle: "Every beginning has a magic of its own.",
+        body: "The first hello, the first laugh that surprised both of us, the first moment I knew something extraordinary had quietly begun. These are the photos of our firsts: precious and unrepeatable.",
+        edition: "Firsts Edition",
+<!--        range: "Photos 1-12",-->
+        line: "The beginning of us, preserved forever in soft gold and ivory.",
+        accent: "#b93457",
+        start: 0
+      },
+      {
+        title: "Places",
+        subtitle: "Every place became more beautiful because you were there.",
+        body: "Streets we wandered, corners we discovered, skies we watched: geography is richer when it holds our footprints side by side.",
+        edition: "Places Edition",
+<!--        range: "Photos 13-24",-->
+        line: "Every destination we made into a memory together.",
+        accent: "#183f35",
+        start: 12
+      },
+      {
+        title: "Smiles",
+        subtitle: "Your joy, captured and kept.",
+        body: "Your smile is the most beautiful thing I have ever had the privilege of witnessing. These photographs exist simply to prove that joy has a face, and it is yours.",
+        edition: "Smiles Edition",
+<!--        range: "Photos 25-36",-->
+        line: "Your laughter, captured. Your joy, immortalized.",
+        accent: "#f08aa5",
+        start: 24
+      },
+      {
+        title: "Promises",
+        subtitle: "Some moments became vows without words.",
+        body: "These are the photographs of promises: the ones spoken aloud and the ones quietly kept, day after quiet day.",
+        edition: "Promises Edition",
+<!--        range: "Photos 37-48",-->
+        line: "The moments that became quiet vows between us.",
+        accent: "#55162b",
+        start: 36
+      },
+      {
+        title: "Forever",
+        subtitle: "Forever is not a word. It is a feeling.",
+        body: "These final pages hold the promise of everything still ahead: every birthday yet to come, every ordinary Tuesday that will feel like a gift.",
+        edition: "Forever Edition",
+        range: "Photos 49-60",
+        line: "The opening pages of everything still to come.",
+        accent: "#d7ae49",
+        start: 48
+      }
+    ];
+
+    const $ = (selector, root = document) => root.querySelector(selector);
+    const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+
+    const toast = $("#toast");
+    let toastTimer;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 3400);
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      }[char]));
+    }
+
+    function placeholderPhoto(photo, index) {
+      const [a, b] = photo.colors;
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="${a}"/>
+              <stop offset="1" stop-color="${b}"/>
+            </linearGradient>
+            <filter id="grain">
+              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+              <feColorMatrix type="saturate" values="0"/>
+              <feComponentTransfer><feFuncA type="table" tableValues="0 0.12"/></feComponentTransfer>
+              <feBlend mode="multiply" in2="SourceGraphic"/>
+            </filter>
+          </defs>
+          <rect width="900" height="1200" fill="url(#g)"/>
+          <circle cx="170" cy="210" r="170" fill="rgba(255,255,255,0.28)"/>
+          <circle cx="740" cy="980" r="260" fill="rgba(255,255,255,0.20)"/>
+          <path d="M100 780 C265 560 410 850 560 650 C695 470 750 640 820 535" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="28" stroke-linecap="round"/>
+          <rect x="96" y="92" width="708" height="1016" rx="28" fill="none" stroke="rgba(255,255,255,0.58)" stroke-width="9"/>
+          <g filter="url(#grain)"><rect width="900" height="1200" fill="transparent"/></g>
+          <text x="450" y="555" text-anchor="middle" font-family="Georgia, serif" font-size="78" fill="rgba(24,23,20,0.74)">Photo ${String(index + 1).padStart(2, "0")}</text>
+          <text x="450" y="635" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="rgba(24,23,20,0.62)">Add ${index + 1}.jpeg</text>
+        </svg>`;
+      return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+    }
+
+    function imageFor(index) {
+      return photos[index].src;
+    }
+
+    function fallbackAttr(index) {
+      return `this.onerror=null;this.src='${placeholderPhoto(photos[index], index)}';`;
+    }
+
+    function buildButterflies() {
+      const field = $("#butterflyField");
+      field.innerHTML = "";
+      const count = window.innerWidth < 640 ? 9 : 15;
+      for (let i = 0; i < count; i++) {
+        const b = document.createElement("div");
+        b.className = "butterfly";
+        b.style.setProperty("--top", `${Math.random() * 88 + 4}%`);
+        b.style.setProperty("--size", `${15 + Math.random() * 22}px`);
+        b.style.setProperty("--duration", `${14 + Math.random() * 16}s`);
+        b.style.setProperty("--delay", `${Math.random() * -24}s`);
+        b.style.setProperty("--rise", `${(Math.random() * 18 - 9).toFixed(1)}rem`);
+        b.style.setProperty("--tilt", `${(Math.random() * 42 - 18).toFixed(1)}deg`);
+        b.style.setProperty("--hue", `${315 + Math.floor(Math.random() * 90)}`);
+        b.innerHTML = "<span class='a'></span><span class='b'></span><span class='c'></span><span class='d'></span>";
+        field.appendChild(b);
+      }
+    }
+
+    function buildChapters() {
+      $("#chapterGrid").innerHTML = chapters.map((chapter) => `
+        <article class="chapter-card" style="--accent:${chapter.accent}">
+          <span>&#10022; ${escapeHtml(chapter.title)}</span>
+          <h3>${escapeHtml(chapter.subtitle)}</h3>
+          <p>${escapeHtml(chapter.body)}</p>
+        </article>
+      `).join("");
+    }
+
+    function buildMagazines() {
+      const positions = [
+        { x: "-20rem", y: "1.2rem", rot: "-12deg", z: 1 },
+        { x: "-10rem", y: "-0.8rem", rot: "-5deg", z: 2 },
+        { x: "0rem", y: "0rem", rot: "2deg", z: 3 },
+        { x: "10.2rem", y: "-0.6rem", rot: "8deg", z: 2 },
+        { x: "19.4rem", y: "1.4rem", rot: "14deg", z: 1 }
+      ];
+      $("#magazineStack").innerHTML = chapters.map((chapter, index) => {
+        const p = positions[index];
+        return `
+          <button class="magazine" style="--x:${p.x};--y:${p.y};--rot:${p.rot};--mobile-rot:${index % 2 ? "1.4deg" : "-1.4deg"};--accent:${chapter.accent};z-index:${p.z}" data-index="${index}">
+            <small>${escapeHtml(chapter.range)}</small>
+            <strong>${escapeHtml(chapter.edition)}</strong>
+            <span>${escapeHtml(chapter.line)}</span>
+            <em>Open the pages</em>
+          </button>
+        `;
+      }).join("");
+
+      $$(".magazine").forEach((button) => {
+        button.addEventListener("click", () => openBook(Number(button.dataset.index)));
+      });
+    }
+
+    function buildGallery() {
+      $("#galleryCount").textContent = `${photos.length} memories ready`;
+      $("#photoWall").innerHTML = photos.map((photo, index) => {
+        const shape = index % 17 === 0 ? "feature" : index % 7 === 0 ? "wide" : index % 11 === 0 ? "tall" : "";
+        const hidden = index >= 18 ? "hidden-extra" : "";
+        const tilt = ((index % 5) - 2) * 0.55;
+        return `
+          <figure class="photo-card ${shape} ${hidden}" style="--tilt:${tilt}deg">
+            <img src="${imageFor(index)}" alt="${escapeHtml(photo.title)}" loading="lazy" onerror="${fallbackAttr(index)}">
+            <figcaption>${escapeHtml(photo.place)} - ${escapeHtml(photo.title)}</figcaption>
+          </figure>
+        `;
+      }).join("");
+    }
+
+    function setupGalleryToggle() {
+      const wall = $("#photoWall");
+      const button = $("#galleryToggle");
+      button.addEventListener("click", () => {
+        const expanded = wall.classList.toggle("expanded");
+        button.textContent = expanded ? "Show fewer photos" : "Show all photos";
+      });
+    }
+
+    const bookState = {
+      chapter: null,
+      pages: [],
+      spread: 0,
+      animating: false
+    };
+
+    function range(start, count) {
+      return Array.from({ length: count }, (_, i) => start + i);
+    }
+
+    function makeBookPages(chapter) {
+      const selected = range(chapter.start, 12);
+      const pages = [
+        { type: "cover", title: chapter.edition, subtitle: chapter.line, accent: chapter.accent },
+        { type: "letter", title: chapter.title, text: chapter.body }
+      ];
+
+      for (let i = 0; i < selected.length; i += 4) {
+        pages.push({ type: "collage", photos: selected.slice(i, i + 4) });
+        pages.push({
+          type: "quote",
+          title: `Photos ${chapter.start + i + 1}-${chapter.start + i + 4}`,
+          text: "A page from the story I never want to stop collecting with you."
+        });
+      }
+
+      pages.push({
+        type: "quote",
+        title: "End of this chapter",
+        text: "Close this book gently. The next memory is still waiting to be made."
+      });
+
+      if (pages.length % 2) {
+        pages.push({
+          type: "quote",
+          title: "Always us",
+          text: "Some pages are quiet because the feeling is enough."
+        });
+      }
+      return pages;
+    }
+
+    function pageHtml(page) {
+      if (!page) return "<div></div>";
+      if (page.type === "cover") {
+        return `
+          <div class="book-cover-page" style="--cover:linear-gradient(135deg, ${page.accent}, #181714)">
+            <p class="kicker" style="color:#fff2cc">Luxury edition</p>
+            <h3>${escapeHtml(page.title)}</h3>
+            <p>${escapeHtml(page.subtitle)}</p>
+          </div>
+        `;
+      }
+      if (page.type === "letter") {
+        return `
+          <div class="book-letter">
+            <p class="kicker">From my heart</p>
+            <h3>${escapeHtml(page.title)}</h3>
+            <p>${escapeHtml(page.text)}</p>
+          </div>
+        `;
+      }
+      if (page.type === "collage") {
+        return `
+          <div class="book-collage">
+            ${page.photos.map((photoIndex) => {
+              const photo = photos[photoIndex];
+              return `
+                <figure class="book-shot">
+                  <img src="${imageFor(photoIndex)}" alt="${escapeHtml(photo.title)}" onerror="${fallbackAttr(photoIndex)}">
+                  <span>${escapeHtml(photo.title)}</span>
+                </figure>
+              `;
+            }).join("")}
+          </div>
+        `;
+      }
+      return `
+        <div class="book-quote">
+          <p class="kicker">Always</p>
+          <h3>${escapeHtml(page.title)}</h3>
+          <p>${escapeHtml(page.text)}</p>
+        </div>
+      `;
+    }
+
+    function renderBookSpread() {
+      $("#bookLeft").innerHTML = pageHtml(bookState.pages[bookState.spread * 2]);
+      $("#bookRight").innerHTML = pageHtml(bookState.pages[bookState.spread * 2 + 1]);
+      $("#prevPage").disabled = bookState.spread === 0;
+      $("#nextPage").disabled = bookState.spread >= Math.ceil(bookState.pages.length / 2) - 1;
+    }
+
+    function openBook(index) {
+      bookState.chapter = chapters[index];
+      bookState.pages = makeBookPages(bookState.chapter);
+      bookState.spread = 0;
+      $("#bookTitle").textContent = bookState.chapter.edition;
+      renderBookSpread();
+      $("#bookOverlay").classList.add("open");
+      $("#bookOverlay").setAttribute("aria-hidden", "false");
+      document.body.classList.add("no-scroll");
+    }
+
+    function closeBook() {
+      const book = $("#book");
+      book.classList.add("closing");
+      setTimeout(() => {
+        $("#bookOverlay").classList.remove("open");
+        $("#bookOverlay").setAttribute("aria-hidden", "true");
+        document.body.classList.remove("no-scroll");
+        book.classList.remove("closing");
+      }, 540);
+    }
+
+    function flipBook(direction) {
+      if (bookState.animating) return;
+      const maxSpread = Math.ceil(bookState.pages.length / 2) - 1;
+      const nextSpread = bookState.spread + direction;
+      if (nextSpread < 0 || nextSpread > maxSpread) return;
+
+      const turner = $("#turner");
+      const front = $("#turnerFront");
+      const back = $("#turnerBack");
+      bookState.animating = true;
+      turner.className = "turner show " + (direction > 0 ? "next" : "prev");
+
+      if (direction > 0) {
+        front.innerHTML = pageHtml(bookState.pages[bookState.spread * 2 + 1]);
+        back.innerHTML = pageHtml(bookState.pages[nextSpread * 2]);
+      } else {
+        front.innerHTML = pageHtml(bookState.pages[bookState.spread * 2]);
+        back.innerHTML = pageHtml(bookState.pages[nextSpread * 2 + 1]);
+      }
+
+      setTimeout(() => {
+        bookState.spread = nextSpread;
+        renderBookSpread();
+        turner.className = "turner";
+        front.innerHTML = "";
+        back.innerHTML = "";
+        bookState.animating = false;
+      }, 770);
+    }
+
+    function setupBookControls() {
+      $("#closeBook").addEventListener("click", closeBook);
+      $("#nextPage").addEventListener("click", () => flipBook(1));
+      $("#prevPage").addEventListener("click", () => flipBook(-1));
+      $("#bookOverlay").addEventListener("click", (event) => {
+        if (event.target === $("#bookOverlay")) closeBook();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (!$("#bookOverlay").classList.contains("open")) return;
+        if (event.key === "Escape") closeBook();
+        if (event.key === "ArrowRight") flipBook(1);
+        if (event.key === "ArrowLeft") flipBook(-1);
+      });
+
+      let startX = 0;
+      let startY = 0;
+      $("#book").addEventListener("touchstart", (event) => {
+        startX = event.changedTouches[0].clientX;
+        startY = event.changedTouches[0].clientY;
+      }, { passive: true });
+      $("#book").addEventListener("touchend", (event) => {
+        const dx = event.changedTouches[0].clientX - startX;
+        const dy = event.changedTouches[0].clientY - startY;
+        if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+          flipBook(dx < 0 ? 1 : -1);
+        }
+      }, { passive: true });
+    }
+
+    function setupRing() {
+      const slider = $("#ringSlider");
+      const ring = $("#herRing");
+      const stage = $("#ringStage");
+      const percent = $("#ringPercent");
+      const toastEl = $("#ringToast");
+      let completed = false;
+
+      function update() {
+        const value = Number(slider.value);
+        ring.style.setProperty("--progress", value / 100);
+        percent.textContent = `${value}%`;
+        if (value >= 100 && !completed) {
+          completed = true;
+          toastEl.classList.add("show");
+          showToast("Congratulations. The first promise is complete. Now it is my turn.");
+          setTimeout(() => stage.classList.add("my-turn"), 980);
+        }
+        if (value < 96 && completed) {
+          completed = false;
+          toastEl.classList.remove("show");
+          stage.classList.remove("my-turn");
+        }
+      }
+
+      slider.addEventListener("input", update);
+      update();
+    }
+
+    const music = {
+      audio: null,
+      context: null,
+      gain: null,
+      nodes: [],
+      playing: false,
+      primed: false,
+      timer: null
+    };
+
+    function setupMusic() {
+      const dock = $("#musicDock");
+      const toggle = $("#musicToggle");
+      const status = $("#musicStatus");
+
+      if (songUrl) {
+        music.audio = new Audio(songUrl);
+        music.audio.loop = true;
+        music.audio.preload = "auto";
+        music.audio.volume = 0;
+      }
+
+      function setPlaying(isPlaying) {
+        music.playing = isPlaying;
+        dock.classList.toggle("playing", isPlaying);
+        status.textContent = isPlaying ? "playing" : "tap disc to play";
+      }
+
+      function startPad(volume = 0.42) {
+        if (!music.context) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (!AudioContext) return Promise.reject(new Error("AudioContext is not supported"));
+          music.context = new AudioContext();
+          music.gain = music.context.createGain();
+          music.gain.gain.value = 0;
+          music.gain.connect(music.context.destination);
+          [261.63, 329.63, 392, 523.25].forEach((freq, index) => {
+            const osc = music.context.createOscillator();
+            const noteGain = music.context.createGain();
+            osc.type = index % 2 ? "triangle" : "sine";
+            osc.frequency.value = freq;
+            noteGain.gain.value = 0.12;
+            osc.connect(noteGain);
+            noteGain.connect(music.gain);
+            osc.start();
+            music.nodes.push({ osc, noteGain });
+          });
+        }
+        return music.context.resume().then(() => {
+          music.gain.gain.cancelScheduledValues(music.context.currentTime);
+          music.gain.gain.setTargetAtTime(volume, music.context.currentTime, 0.7);
+          setPlaying(true);
+        });
+      }
+
+      function stopPad() {
+        if (music.gain && music.context) {
+          music.gain.gain.cancelScheduledValues(music.context.currentTime);
+          music.gain.gain.setTargetAtTime(0, music.context.currentTime, 0.18);
+        }
+        setPlaying(false);
+      }
+
+      function play() {
+        if (music.audio) {
+          return music.audio.play().then(() => {
+            music.audio.volume = 0.62;
+            setPlaying(true);
+          }).catch(() => startPad());
+        }
+        return startPad();
+      }
+
+      function pause() {
+        if (music.audio) music.audio.pause();
+        stopPad();
+      }
+
+      function primeThenStartSoon() {
+        if (music.primed) return;
+        music.primed = true;
+        status.textContent = "starting in 5 seconds";
+        if (music.audio) {
+          music.audio.play().then(() => { music.audio.volume = 0; }).catch(() => {});
+        } else {
+          startPad(0).catch(() => {});
+        }
+        clearTimeout(music.timer);
+        music.timer = setTimeout(() => {
+          play().catch(() => {
+            status.textContent = "tap disc to play";
+            showToast("Tap the rotating music disc once to begin the song.");
+          });
+        }, 1000);
+      }
+
+      toggle.addEventListener("click", () => {
+        if (music.playing) pause();
+        else play().catch(() => showToast("Tap once more to start the music."));
+      });
+
+      $("#openGift").addEventListener("click", primeThenStartSoon);
+      setTimeout(() => {
+        if (!music.primed && !music.playing) {
+          play().catch(() => { status.textContent = "tap disc to play"; });
+        }
+      }, 5000);
+    }
+
+    function setupHero() {
+      $("#openGift").addEventListener("click", () => {
+        $("#story").scrollIntoView({ behavior: "smooth", block: "start" });
+        showToast("The gift is open. Happy Birthday, my love.");
+      });
+    }
+
+    const game = {
+      running: false,
+      caught: 0,
+      spawned: 0,
+      hearts: [],
+      raf: 0,
+      lastTime: 0,
+      nextSpawn: 0,
+      bucketX: 0.5
+    };
+
+    function setupGame() {
+      const stage = $("#gameStage");
+      const bucket = $("#bucket");
+      const result = $("#gameResult");
+
+      function updateBucket(clientX) {
+        const rect = stage.getBoundingClientRect();
+        game.bucketX = Math.max(0.08, Math.min(0.92, (clientX - rect.left) / rect.width));
+        bucket.style.left = `${game.bucketX * 100}%`;
+      }
+
+      stage.addEventListener("pointermove", (event) => updateBucket(event.clientX));
+      stage.addEventListener("pointerdown", (event) => {
+        updateBucket(event.clientX);
+        stage.setPointerCapture(event.pointerId);
+      });
+
+      function waveFor(index) {
+        if (index < 10) return { level: 1, speed: 95, interval: 760, amp: 26, size: 2.2 };
+        if (index < 20) return { level: 2, speed: 132, interval: 620, amp: 46, size: 1.95 };
+        return { level: 3, speed: 178, interval: 470, amp: 72, size: 1.72 };
+      }
+
+      function spawnHeart(now) {
+        if (game.spawned >= 30) return;
+        const wave = waveFor(game.spawned);
+        $("#levelLabel").textContent = wave.level;
+
+        const el = document.createElement("div");
+        el.className = "heart";
+        el.style.width = `${wave.size}rem`;
+        el.style.height = `${wave.size}rem`;
+
+        const x = 10 + Math.random() * 80;
+        const heart = {
+          el,
+          baseX: x,
+          y: -8,
+          speed: wave.speed + Math.random() * 22,
+          amp: wave.amp,
+          phase: Math.random() * Math.PI * 2,
+          born: now,
+          caught: false
+        };
+
+        stage.appendChild(el);
+        game.hearts.push(heart);
+        game.spawned += 1;
+        game.nextSpawn = now + wave.interval;
+      }
+
+      function updateGame(now) {
+        if (!game.running) return;
+
+        const rect = stage.getBoundingClientRect();
+        const bucketRect = bucket.getBoundingClientRect();
+        const dt = Math.min(32, now - (game.lastTime || now));
+        game.lastTime = now;
+
+        if (now >= game.nextSpawn) spawnHeart(now);
+
+        game.hearts = game.hearts.filter((heart) => {
+          heart.y += heart.speed * dt / 1000;
+          const drift = Math.sin((now - heart.born) / 260 + heart.phase) * heart.amp;
+          const px = rect.width * heart.baseX / 100 + drift;
+          const py = rect.height * heart.y / 100;
+          heart.el.style.transform = `translate(${px}px, ${py}px) rotate(-45deg)`;
+
+          const heartRect = heart.el.getBoundingClientRect();
+          const overlaps =
+            heartRect.left < bucketRect.right &&
+            heartRect.right > bucketRect.left &&
+            heartRect.bottom > bucketRect.top &&
+            heartRect.top < bucketRect.bottom;
+
+          if (overlaps && !heart.caught) {
+            heart.caught = true;
+            heart.el.remove();
+            game.caught += 1;
+            $("#caughtCount").textContent = game.caught;
+            return false;
+          }
+
+          if (heart.y > 116) {
+            heart.el.remove();
+            return false;
+          }
+          return true;
+        });
+
+        if (game.spawned >= 30 && game.hearts.length === 0) {
+          endGame();
+          return;
+        }
+
+        game.raf = requestAnimationFrame(updateGame);
+      }
+
+      function startGame() {
+        game.running = true;
+        game.caught = 0;
+        game.spawned = 0;
+        game.hearts.forEach((heart) => heart.el.remove());
+        game.hearts = [];
+        game.lastTime = 0;
+        game.nextSpawn = performance.now();
+        $("#caughtCount").textContent = "0";
+        $("#levelLabel").textContent = "1";
+        result.classList.remove("show");
+        cancelAnimationFrame(game.raf);
+        game.raf = requestAnimationFrame(updateGame);
+      }
+
+      function endGame() {
+        game.running = false;
+        cancelAnimationFrame(game.raf);
+        const caught = game.caught;
+        $("#gameResultTitle").textContent = `${caught}/30 hearts`;
+        $("#gameResultText").textContent = `You caught ${caught} out of 30 hearts. Happy Birthday again, my love.`;
+        result.classList.add("show");
+        showToast("Happy Birthday again, my love.");
+      }
+
+      $("#startGame").addEventListener("click", startGame);
+      $("#playAgain").addEventListener("click", startGame);
+    }
+
+    function init() {
+      buildButterflies();
+      buildChapters();
+      buildMagazines();
+      buildGallery();
+      setupGalleryToggle();
+      setupBookControls();
+      setupRing();
+      setupMusic();
+      setupHero();
+      setupGame();
+
+      window.addEventListener("resize", () => {
+        clearTimeout(window.__butterflyResize);
+        window.__butterflyResize = setTimeout(buildButterflies, 220);
+      });
+    }
+
+    init();
+  </script>
+</body>
+</html>
